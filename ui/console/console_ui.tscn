@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://b2u8r4l73kr3"]
+
+[ext_resource type="Script" uid="uid://cmqxkvdg76h7c" path="res://ui/console/console_ui.gd" id="1_c6ot5"]
+[ext_resource type="Script" uid="uid://uv75rjvh2g8u" path="res://modules/m_ui_pausable.gd" id="2_04xl0"]
+
+[node name="ConsoleUi" type="Control" unique_id=1581756807]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c6ot5")
+
+[node name="M_UIPausable" type="Node" parent="." unique_id=1297673073]
+script = ExtResource("2_04xl0")
+metadata/_custom_type_script = "uid://uv75rjvh2g8u"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=944507309]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.6419753
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1073494829]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer" unique_id=1453283066]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+vertical_alignment = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer" unique_id=1446516937]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/PanelContainer2" unique_id=1621562070]
+layout_mode = 2
+placeholder_text = "Type \"list\" to see all commands. Type \"[cmd] -h\" to get help with a command."
+keep_editing_on_text_submit = true
