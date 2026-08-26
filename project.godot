@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="YarnGodotCore"
+config/tags=PackedStringArray("template")
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
-config/tags=PackedStringArray("template")
 
 [autoload]
 
@@ -21,6 +21,7 @@ Log="*uid://mfi4ts7ebtfm"
 UiHandler="*uid://hv8f2hlkhryp"
 InputHandler="*uid://qju7lexbdjgc"
 AudioHandler="*uid://ktc14qafawpl"
+JobHandler="*uid://b7bbyjuq7gsae"
 Systems="*uid://cywssq0qi8sb6"
 GIH_Default="*uid://ck6cptv78oy7"
 ICTX_Console="*uid://dpdpybjo472u4"
