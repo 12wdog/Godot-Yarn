@@ -13,33 +13,26 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	# Global handlers get first opportunity to consume the event.
 	if _handle_global_input(event):
 		get_viewport().set_input_as_handled()
 		return
-
-	# No active context means there is nothing else to process.
+		
 	if _current_context == &"":
 		return
-
+	
 	var input_context: Node = _contexts.get(_current_context)
-
+	
 	if input_context == null:
 		return
-
-	# The context tells us whether it consumed the event.
+		
 	if input_context.handle_input(event):
 		get_viewport().set_input_as_handled()
 
 
-# ============================================================================
-# Global Input
-# ============================================================================
-
 func register_global_handler(handler: GlobalInputHandler) -> void:
 	if handler in _global_handlers:
 		return
-
+	
 	_global_handlers.append(handler)
 
 
@@ -51,34 +44,26 @@ func _handle_global_input(event: InputEvent) -> bool:
 	for handler : GlobalInputHandler in _global_handlers:
 		if handler.handle_input(event):
 			return true
-
+		
 	return false
 
-
-# ============================================================================
-# Context Registration
-# ============================================================================
 
 func register_context(context_name: StringName, context: Node) -> void:
 	if _contexts.has(context_name):
 		Log.warn("Input context already registered: %s" % context_name)
 		return
-
+	
 	_contexts[context_name] = context
 
 
 func unregister_context(context_name: StringName) -> void:
 	_contexts.erase(context_name)
-
+	
 	if _current_context == context_name:
 		_current_context = &""
-
+		
 	_context_stack.erase(context_name)
 
-
-# ============================================================================
-# Context Management
-# ============================================================================
 
 func set_context(context_name: StringName) -> void:
 	_context_stack.clear()
@@ -88,13 +73,11 @@ func _set_context(context_name: StringName) -> void:
 	if context_name == &"":
 		_current_context = &""
 		return
-
+	
 	if not _contexts.has(context_name):
-		Log.warn(
-			"Cannot activate unregistered input context: %s" % context_name
-		)
+		Log.warn("Cannot activate unregistered input context: %s" % context_name)
 		return
-
+	
 	_current_context = context_name
 
 func get_context() -> StringName:
@@ -105,15 +88,11 @@ func is_context(context_name: StringName) -> bool:
 	return _current_context == context_name
 
 
-# ============================================================================
-# Context Stack
-# ============================================================================
-
 func push_context(context_name: StringName) -> void:
 	if not _contexts.has(context_name):
 		Log.warn("Cannot push unregistered input context: %s" % context_name)
 		return
-
+	
 	_context_stack.push_back(_current_context)
 	_set_context(context_name)
 
@@ -122,7 +101,7 @@ func pop_context() -> void:
 	if _context_stack.is_empty():
 		Log.warn("Cannot pop input context: stack is empty")
 		return
-
+		
 	var previous_context : StringName = _context_stack.pop_back()
 	_set_context(previous_context)
 

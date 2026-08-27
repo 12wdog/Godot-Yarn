@@ -10,11 +10,12 @@ enum Level {
 const LEVEL_NAMES = ["DEBUG","INFO","WARN","ERROR"]
 const LEVEL_COLORS = ["gray","white","yellow","red"]
 
-var log_path := "user://game.log"
+var log_path : String
 var log_file: FileAccess
 
 
 func _init():
+	log_path = ("user://log-%s.log" % Time.get_date_string_from_system())
 	log_file = FileAccess.open(log_path, FileAccess.WRITE_READ)
 	if log_file:
 		log_file.seek_end()
