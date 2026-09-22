@@ -21,7 +21,7 @@ func save_to_file(file_name : String) -> void:
 		DirAccess.make_dir_recursive_absolute(DIR_PATH)
 	
 	var file_path := "%s/%s" % [DIR_PATH, file_name]
-	var result = ResourceSaver.save(save_data, file_path, ResourceSaver.FLAG_BUNDLE_RESOURCES)
+	var result = ResourceSaver.save(save_data, file_path)
 	if result != OK:
 		Log.error("Failed to save file. Err type: %s" % error_string(result))
 
@@ -40,16 +40,3 @@ func load_from_file(file_name : String) -> void:
 		return
 	
 	save_data = (load(file_path) as SaveFile)
-
-class SaveFile extends Resource:
-	var save_data : Dictionary[StringName, SaveData] = {
-		SAVE_SYS: SaveData.new(null, SAVE_SYS_VERSION)
-	}
-	
-	func push(data : Resource, version : int, tag : StringName) -> void:
-		save_data[tag] = SaveData.new(data, version)
-	
-	func pull(tag : StringName) -> SaveData:
-		if save_data.has(tag):
-			return save_data[tag]
-		return null
