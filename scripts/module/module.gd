@@ -1,3 +1,4 @@
+@icon("res://textures/icons/module.png")
 @abstract
 class_name Module
 extends Node

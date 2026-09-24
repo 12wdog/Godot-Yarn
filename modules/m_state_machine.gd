@@ -45,8 +45,8 @@ func change_state(state : StringName) -> void:
 
 func _process(delta: float) -> void:
 	if default_state:
-		default_state.process(delta)
+		default_state.update(delta)
 
 func _physics_process(delta: float) -> void:
 	if default_state:
-		default_state.process(delta)
+		default_state.physics_update(delta)
