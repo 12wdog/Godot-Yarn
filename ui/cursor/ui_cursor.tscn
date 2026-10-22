@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://3finn65whpa0"]
+
+[ext_resource type="Script" uid="uid://b407gyjlcsm2h" path="res://ui/cursor/ui_cursor.gd" id="1_pwesv"]
+[ext_resource type="Texture2D" uid="uid://d22p5oetyh47v" path="res://textures/cursor/3225-6846-custom-mouse-cursor-face-watermark.png" id="2_fykfl"]
+
+[node name="UI_Cursor" type="Control" unique_id=1495927652]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pwesv")
+
+[node name="Cursor" type="Control" parent="." unique_id=627433727]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CursorVisual" type="TextureRect" parent="Cursor" unique_id=179008623]
+layout_mode = 0
+offset_left = -43.0
+offset_top = -31.0
+offset_right = 457.0
+offset_bottom = 469.0
+scale = Vector2(0.195, 0.195)
+texture = ExtResource("2_fykfl")
